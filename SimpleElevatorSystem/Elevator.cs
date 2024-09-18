@@ -28,32 +28,27 @@ public class Elevator
         var upwardRequests = Requests.Where(x => x > CurrentFloor).ToList();
         var downwardRequests = Requests.Where(x => x < CurrentFloor).ToList();
 
+        var targetFloor = 0;
+
         if (Direction == Direction.Up && upwardRequests.Any())
         {
-            var targetFloor = upwardRequests.Min();
+            targetFloor = upwardRequests.Min();
             CurrentFloor++;
             Console.WriteLine($"Elevator {_id} is moving up to floor {CurrentFloor}");
-
-            if (CurrentFloor == targetFloor)
-            {
-                ArriveAtFloor(targetFloor);
-                return;
-            }
         }
 
         if (Direction == Direction.Down && downwardRequests.Any())
         {
-            var targetFloor = downwardRequests.Max();
+            targetFloor = downwardRequests.Max();
             CurrentFloor--;
             Console.WriteLine($"Elevator {_id} is moving down to floor {CurrentFloor}");
-
-            if (CurrentFloor == targetFloor)
-            {
-                ArriveAtFloor(targetFloor);
-                return;
-            }
         }
 
+        if (CurrentFloor == targetFloor)
+        {
+            ArriveAtFloor(targetFloor);
+            return;
+        }
 
         if (Direction == Direction.Up && !upwardRequests.Any())
         { 
