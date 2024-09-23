@@ -25,21 +25,18 @@ public class Elevator
     {
         if (Requests.Count == 0) return;
 
-        var upwardRequests = Requests.Where(x => x > CurrentFloor).ToList();
-        var downwardRequests = Requests.Where(x => x < CurrentFloor).ToList();
+        var targetFloor = Requests.OrderBy(f => Math.Abs(f - CurrentFloor)).First();
 
-        var targetFloor = 0;
-
-        if (Direction == Direction.Up && upwardRequests.Any())
+        Direction = CurrentFloor > targetFloor ? Direction.Down : Direction.Up;
+        
+        if (Direction == Direction.Up)
         {
-            targetFloor = upwardRequests.Min();
             CurrentFloor++;
             Console.WriteLine($"Elevator {_id} is moving up to floor {CurrentFloor}");
         }
 
-        if (Direction == Direction.Down && downwardRequests.Any())
+        if (Direction == Direction.Down)
         {
-            targetFloor = downwardRequests.Max();
             CurrentFloor--;
             Console.WriteLine($"Elevator {_id} is moving down to floor {CurrentFloor}");
         }
@@ -49,19 +46,6 @@ public class Elevator
             ArriveAtFloor(targetFloor);
             return;
         }
-
-        if (Direction == Direction.Up && !upwardRequests.Any())
-        { 
-            Direction = Direction.Down;
-            return;
-        }
-
-        if (Direction == Direction.Down && !downwardRequests.Any())
-        {
-            Direction = Direction.Up;
-            return;
-        }
-
     }
 
     private void ArriveAtFloor(int floor)

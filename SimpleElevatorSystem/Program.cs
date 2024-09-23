@@ -23,5 +23,7 @@ while (true)
         elevator.Move();
     }
 
+    Console.Write("\r\n");
+    
     Thread.Sleep(10000);
 }

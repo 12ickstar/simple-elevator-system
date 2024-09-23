@@ -15,9 +15,9 @@ public class ElevatorTests
     public void AddRequest_ShouldNotAddDuplicateRequest()
     {
         var elevator = new Elevator(1);
-        
+
         elevator.AddRequest(5);
-        elevator.AddRequest(5); 
+        elevator.AddRequest(5);
 
         Assert.AreEqual(1, elevator.Requests.Count, "Duplicate requests should not be added.");
     }
@@ -26,7 +26,7 @@ public class ElevatorTests
     public void Move_ShouldMoveUpToTargetFloor()
     {
         var elevator = new Elevator(1);
-        elevator.AddRequest(3); 
+        elevator.AddRequest(3);
 
         elevator.Move();
         elevator.Move();

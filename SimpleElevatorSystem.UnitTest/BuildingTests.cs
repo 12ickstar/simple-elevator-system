@@ -10,7 +10,7 @@ public class BuildingTests
         building.Elevators[0].Direction = Direction.Up;
 
         building.Elevators[1].CurrentFloor = 5;
-        building.Elevators[1].Direction = Direction.Up;
+        building.Elevators[1].Direction = Direction.Down;
 
         building.Elevators[2].CurrentFloor = 9;
         building.Elevators[2].Direction = Direction.Down;
